@@ -50,18 +50,15 @@ public class Driver {
 
     public static void closeDriver(){
         if (driver != null){
-            driver.manage().deleteAllCookies();
-            driver.close();
             driver.quit();
-            driver=null;
-
-
-
+            driver = null;
 
         }
 
     }
-
-
-
 }
+/*
+for (String s : driver.getWindowHandles()){
+                driver.switchTo().window(s).quit();
+            }
+ */

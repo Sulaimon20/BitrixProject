@@ -20,25 +20,20 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Runner*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>6.2.2</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>6.2.2</version>
-            <scope>test</scope>
-        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -57,22 +52,28 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.2.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>6.2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-jvm-deps -->
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-jvm-deps</artifactId>
-            <version>1.0.5</version>
-            <scope>provided</scope>
-        </dependency>
-
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -92,8 +93,14 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+
     </dependencies>
-
-
 
 </project>

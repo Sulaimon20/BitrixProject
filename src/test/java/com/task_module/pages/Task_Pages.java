@@ -12,65 +12,57 @@ public class Task_Pages {
     }
 
     @FindBy(xpath = "//div/span[.='Task']")
-    public WebElement taskButton;
-
+    public WebElement taskButtonElement;
 
     @FindBy(xpath = "//input[@id='tasks-task-priority-cb']")
-    public WebElement priorityBox;
+    public WebElement priorityBoxElement;
 
     @FindBy(xpath = "(//input[@type='checkbox'])[13]")
-    public WebElement priorityCheckBox;
-
-
-    @FindBy(xpath = "//span[@class='logo-text']")
-    public WebElement homePage;
-
-
+    public WebElement priorityCheckBoxElement;
 
     @FindBy(xpath = "(//div[@class='feed-add-post-form-but-more-open']/span[1])[3]")
-    public WebElement visualEditor;
-
+    public WebElement visualEditorElement;
 
     @FindBy(xpath = "(//div[@class='bxhtmled-toolbar'])[3]")
-    public WebElement postVisualEditor;
+    public WebElement postVisualEditorElement;
 
 
     //Scenario 3
 
     @FindBy(xpath = "//input[@data-bx-id='task-edit-title']")
-    public WebElement thingToDoBox;
+    public WebElement thingToDoBoxElement;
 
     @FindBy(xpath = "(//span[@title='Upload files'])[3]")
-    public WebElement uploadfilesIcon;
+    public WebElement uploadfilesIconElement;
 
     @FindBy(xpath = "(//span[.='Select document from Bitrix24'])[5]")
-    public WebElement selectFromBitrix;
+    public WebElement selectFromBitrixElement;
 
     @FindBy(xpath = "//span[.='Sales and marketing']")
-    public WebElement salesMarketingButton;
+    public WebElement salesMarketingButtonElement;
 
     @FindBy(linkText = "Marketing and advertising")
-    public WebElement MarketingAdvertising;
+    public WebElement MarketingAdvertisingElement;
 
     @FindBy(linkText = "Logo.gif")
     public WebElement LogoGifElement;
 
     @FindBy(xpath = "//*[@id='DiskFileDialog']/div[3]/span[1]")
-    public WebElement selectDocumentButton;
+    public WebElement selectDocumentButtonElement;
 
     @FindBy(xpath = "//button[@id='blog-submit-button-save']")
-    public WebElement sendButton;
+    public WebElement sendButtonElement;
 
     @FindBy(xpath = "//*[@id='bx_left_menu_menu_tasks']/a/span[1]")
-    public WebElement menuTaskButton;
+    public WebElement menuTaskButtonElement;
 
 //Scenario 4
 
     @FindBy(xpath = "(//span[@title='Quote text'])[2]")
-    public WebElement quoteIcon;
+    public WebElement quoteIconElement;
 
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
-    public WebElement messageBox;
+    public WebElement messageBoxElement;
 
 //Scenario 5
 
@@ -88,7 +80,29 @@ public class Task_Pages {
     public WebElement addMentionEmail;
 
 
+    @FindBy(xpath = "(//span[@class='bxhtmled-top-bar-btn bxhtmled-button-link'])[2]")
+    public WebElement linkIconElement;
 
+    @FindBy(xpath = "//input[@id='linklifefeed_task_form-text']")
+    public WebElement textLinkElement;
+
+    @FindBy(xpath = "//input[@id='linklifefeed_task_form-href']")
+    public WebElement urlLinkElement;
+
+    @FindBy(xpath = "//input[@id='undefined']")
+    public WebElement saveButtonElement;
+
+    //Scenario 7
+
+    @FindBy(xpath = "//span[@class='tasks-task-mpf-link']")
+    public WebElement checkListElement;
+
+
+    @FindBy(xpath = "//input[@class='js-id-checklist-is-form-title task-checklist-field-add']")
+    public WebElement checkListToDoBoxElement;
+
+    @FindBy(xpath = "//span[@class='js-id-checklist-is-form-submit block-edit tasks-btn-apply task-field-title-ok']")
+    public WebElement checkListToDoBoxOkElement;
 
 
 }

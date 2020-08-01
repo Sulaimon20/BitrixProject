@@ -9,13 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class Login_Page {
+public class Login_Page extends BasePage{
 
-    public Login_Page(){
-        PageFactory.initElements(Driver.getDriver(),this);
-    }
 
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 2);
 
     // LOGIN WebElements
 

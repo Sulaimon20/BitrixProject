@@ -7,14 +7,14 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
 
-    @Before
+ /*   @Before
     public void setUpScenario(){
         System.out.println("-----> Before annotation: Setting up browser");
-    }
+    }*/
 
 
     @After
-    public void tearDownScenario(Scenario scenario){
+    public void tearDownScenario(){
 
         //#1 we need to take a screen shot using Selenium
         // #2 we are going to attach it into our report using attach method

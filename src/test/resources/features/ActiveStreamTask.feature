@@ -1,10 +1,11 @@
 Feature: As a user, I should be able to assign tasks by clicking on Task tab under Active Stream
 
   Background: User log in and is on the <Active Stream> home page
-    Given user login and is on the <Active Stream> home page
 
+  @test
 
   Scenario: 1. "High Priority" task functionality
+    Given user login and is on the <Active Stream> home page
     When User clicks on <Task> button
     * User clicks <High Priority> dropdown box
     Then User see fire icon colored
@@ -15,8 +16,6 @@ Feature: As a user, I should be able to assign tasks by clicking on Task tab und
     Then The editor text-bar on the top of the message box is displayed
 
   Scenario: 3. Uploading file functionality
-  from local disks, download from external drive, select documents from bixtrix24,
-  and create files to upload.
     When User clicks on <Task> button
     Then User writes in <Thing to do> box text "Uploading file testing"
     * User clicks on <Upload files> icon and upload <TeamTestCases> file  and <LoginVyTrack> picture from local disks
@@ -37,16 +36,49 @@ Feature: As a user, I should be able to assign tasks by clicking on Task tab und
     * User clicks on <Task> button on menu bar
     Then User see the the "Quote text" in <My Tasks> table
 
-  @test
+
   Scenario: 5. Add mention functionality
     When User clicks on <Task> button
-    And User writes in <Thing to do> box text "Add mention"
+    And User writes in <Thing to do> box text "Add mention testing"
     * User clicks on <Add mention> button
     * User clicks on <Employees and departments>
-    And User clicks on given email and chooses it
+    * User clicks on given email and chooses it
     * User clicks <Send> button
     * User clicks on <Task> button on menu bar
     Then User see the the "Add mention" in <My Tasks> table
+
+
+  Scenario Outline: 6. Attach link functionality
+    When User clicks on <Task> button
+    And User writes in <Thing to do> box text "Attach link testing"
+    And User clicks on link icon
+    And User writes the "<Text link>" and pastes "<URL link>" and save it
+    * User clicks <Send> button
+    * User clicks on <Task> button on menu bar
+    Then User see the the "Attach link testing" in <My Tasks> table
+
+    Examples:
+      | Text link                             | URL link                                    |
+      | NASA Live: Official Stream of NASA TV | https://www.youtube.com/watch?v=21X5lGlDOfg |
+
+
+  Scenario: 7. Checklist functionality
+
+    When User clicks on <Task> button
+    And User writes in <Thing to do> box text "Checklist testing"
+    And User clicks on <Checklist> icon
+    And User writes "<text>" in <Checklist>
+    * User clicks <Send> button
+    * User clicks on <Task> button on menu bar
+    Then User see the the "Checklist testing" in <My Tasks> table
+
+
+
+
+
+
+
+
 
 
 
