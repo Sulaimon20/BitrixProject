@@ -1,10 +1,11 @@
-package com.task_module.step_defenitions;
+package com.task_module.step_definitions;
 
 import com.github.javafaker.Faker;
 import com.task_module.pages.Login_Page;
 import com.task_module.pages.Task_Pages;
 import com.task_module.utilities.ConfigurationReader;
 import com.task_module.utilities.Driver;
+import com.task_module.utilities.Methods;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,7 +15,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -37,8 +37,8 @@ public class task_step_definition {
         loginPage.login();
         String actualTitle = "Portal";
         Assert.assertEquals(Driver.getDriver().getTitle(), actualTitle);
-    }
 
+    }
 
     //Scenario 1
     @When("User clicks on <Task> button")
@@ -53,7 +53,7 @@ public class task_step_definition {
 
     }
 
-    @When("User see fire icon colored")
+    @Then("User see fire icon colored")
     public void user_see_fire_icon_colored() {
         //the fire icon should be verified
         Assert.assertTrue("the clicking of priority checkbox is failed", task_pages.priorityCheckBoxElement.isSelected());
@@ -61,6 +61,12 @@ public class task_step_definition {
 
 
     //Scenario 2
+    @When("User in is Hope page")
+    public void userInIsHopePage() {
+
+        wait.until(ExpectedConditions.visibilityOf(task_pages.homePageLogoElement)).click();
+
+    }
 
     @Then("User clicks on the letter <A> in the bottom of the message box")
     public void userClicksOnTheLetterAInTheBottomOfTheMessageBox() {
@@ -78,13 +84,15 @@ public class task_step_definition {
 
     }
 
-
     //Scenario #3
+    //these two line serve as randomly accumulating text in textboxes
+    String formatDateTime = now.format(format);
+    String textMessage;
+
     @Then("User writes in <Thing to do> box text {string}")
     public void userWritesInThingToDoBoxText(String text) {
 
-        String formatDateTime = now.format(format);
-        String textMessage = text + " " + formatDateTime;
+        textMessage = text + " " + formatDateTime;
 
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).click();
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).sendKeys(textMessage);
@@ -123,8 +131,8 @@ public class task_step_definition {
     public void userClicksTheSelectDocumentButtonAndUploadAFileFromBitrix() {
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.selectFromBitrixElement)).click();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.salesMarketingButtonElement)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(task_pages.MarketingAdvertisingElement)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(task_pages.LogoGifElement)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(task_pages.marketingAdvertisingElement)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(task_pages.logoGifElement)).click();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.selectDocumentButtonElement)).click();
 
     }
@@ -152,30 +160,25 @@ public class task_step_definition {
 
         for (WebElement each : namesList) {
             if (each.getText().equals(textMessage)) {
-                Assert.assertTrue(true);
+                Assert.assertTrue("The test is FAILED", true);
             } else {
-               }
+            }
             break;
         }
     }
 
 
     //Scenario 4
-
     @Then("User clicks <Quote text> icon")
     public void userClicksQuoteTextIcon() {
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.quoteIconElement)).click();
 
     }
-//these two line serve as randomly accumulating text in textboxes
-    String formatDateTime = now.format(format);
-    String textMessage;
 
     @Then("User writes a text {string} in <message box> empty box")
     public void userWritesATextInMessageBoxEmptyBox(String message) {
 
-        textMessage = message + "::" + formatDateTime;
-        System.out.println("formatDateTime = " + formatDateTime);
+        textMessage = message + "#" + formatDateTime;
 
         WebElement table = Driver.getDriver().findElement(By.xpath("(//iframe[@class='bx-editor-iframe'])[2]"));
 
@@ -187,11 +190,11 @@ public class task_step_definition {
     public void userSeeTheTheInMyTasksTable(String message) throws InterruptedException {
 
 
-        String textMessage = message + "::" + formatDateTime;
-        System.out.println("formatDateTime = " + formatDateTime);
+        textMessage = message + "#" + formatDateTime;
+
         Thread.sleep(2000);
         List<WebElement> taskList = Driver.getDriver().findElements(By.xpath("//table[@id='TASKS_GRID_ROLE_ID_4096_0_ADVANCED_N_table']//td[3]"));
-                String getText = "";
+        String getText = "";
 
         for (WebElement each : taskList) {
 
@@ -210,30 +213,20 @@ public class task_step_definition {
     }
 
     //Scenario 5
-
     @Then("User clicks on <Add mention> button")
     public void userClicksOnAddMentionButton() {
 
-    wait.until(ExpectedConditions.elementToBeClickable(task_pages.mentionAddIcon)).click();
-
-    }
-
-    @Then("User clicks on <Employees and departments>")
-    public void userClicksOnEmployeesAndDepartments() {
-
-        wait.until(ExpectedConditions.visibilityOf(task_pages.employAndDep)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(task_pages.addMentionIcon)).click();
 
     }
 
     @And("User clicks on given email and chooses it")
     public void userClicksOnGivenEmailAndChoosesIt() {
-        wait.until(ExpectedConditions.visibilityOf(task_pages.addMentionEmail)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(task_pages.addMoreEmailElement)).click();
 
     }
 
-
     //Scenario 6
-
     @And("User clicks on link icon")
     public void userClicksOnLinkIcon() {
 
@@ -241,33 +234,158 @@ public class task_step_definition {
 
     }
 
-
-
-
     @And("User writes the {string} and pastes {string} and save it")
     public void userWritesTheAndPastesAndSaveIt(String text, String URL) {
         task_pages.textLinkElement.sendKeys(text);
         task_pages.urlLinkElement.sendKeys(URL);
         task_pages.saveButtonElement.click();
-     }
+    }
 
     //Scenario 7
-     
     @And("User clicks on <Checklist> icon")
     public void userClicksOnChecklistIcon() {
-        
+
         task_pages.checkListElement.click();
-        
-        
+
+
     }
 
     @And("User writes {string} in <Checklist>")
     public void userWritesInChecklist(String arg0) {
         Faker faker = new Faker();
         String text;
-        for (int i = 1; i <=4 ; i++) {
-            text=faker.company().profession().intern();
-            task_pages.checkListToDoBoxElement.sendKeys(text+ Keys.ENTER);
+        for (int i = 1; i <= 4; i++) {
+            text = faker.job().keySkills();
+            task_pages.checkListToDoBoxElement.sendKeys(text + Keys.ENTER);
         }
+    }
+
+
+    //Scenario 8
+    @And("User clicks on <Add more>")
+    public void userClicksOnAddMore() {
+        wait.until(ExpectedConditions.visibilityOf(task_pages.addMoreElement)).click();
+
+    }
+
+    @And("User clicks on assignee's emails and chooses it")
+    public void userClicksOnAssigneeSEmailsAndChoosesIt() {
+        wait.until(ExpectedConditions.elementToBeClickable(task_pages.addMoreEmailElement)).getText();
+        List<WebElement> emailList = Driver.getDriver().findElements(By.xpath("//div[@class='bx-finder-box-item-t7-name']"));
+
+        for (WebElement each : emailList) {
+            each.click();
+        }
+
+    }
+
+    //Scenario 9
+    @And("User clicks on <Deadline> dropbox")
+    public void userClicksOnDeadlineDropbox() {
+
+        Methods.highlightElement(task_pages.deadLineBoxElement);
+        task_pages.deadLineBoxElement.click();
+
+    }
+
+    @And("User clicks on {string}, {string}, {string}, {string}, {string} and {string}")
+    public void userClicksOnAnd(String month, String year, String day, String hour, String minute, String pm_am) {
+
+
+        //  Month value
+        Methods.highlightElement(task_pages.monthBoxElement);
+        task_pages.monthBoxElement.click();
+        WebElement monthElement = Driver.getDriver().findElement(By.xpath("//span[contains(@class,'bx-calendar-month')][contains(text(),'" + month + "')]"));
+        Methods.highlightElement(monthElement);
+        wait.until(ExpectedConditions.elementToBeClickable(monthElement)).click();
+
+        //  Year value
+        Methods.highlightElement(task_pages.yearBoxElement);
+        task_pages.yearBoxElement.click();
+
+        WebElement yearElement = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + year + "')]"));
+        Methods.highlightElement(yearElement);
+        wait.until(ExpectedConditions.elementToBeClickable(yearElement)).click();
+
+        //Day value
+        WebElement dayElement = Driver.getDriver().findElement(By.xpath("//a[@class='bx-calendar-cell bx-calendar-weekend'][contains(text(),'" + day + "')]"));
+
+        Methods.highlightElement(dayElement);
+        wait.until(ExpectedConditions.elementToBeClickable(dayElement)).click();
+
+        //  hour value
+        Methods.highlightElement(task_pages.hourElement);
+        task_pages.hourElement.clear();
+        task_pages.hourElement.sendKeys(hour);
+
+        //  minute value
+        Methods.highlightElement(task_pages.minutelement);
+        task_pages.minutelement.clear();
+        task_pages.minutelement.sendKeys(minute);
+
+        Methods.highlightElement(task_pages.pm_am_element);
+
+        if (pm_am.equalsIgnoreCase("am")) {
+            task_pages.pm_am_element.click();
+        }
+
+    }
+
+    @And("User clicks on Select button")
+    public void userClicksOnSelectButton() {
+        //Select button
+        Methods.highlightElement(task_pages.selectButtonElement);
+        task_pages.selectButtonElement.click();
+    }
+
+    @And("User clicks on <Time planning> and <Start task on>")
+    public void userClicksOnTimePlanningAndStartTaskOn() {
+
+        task_pages.timePlanningButtonElement.click();
+        task_pages.startTaskOnBoxElement.click();
+
+
+    }
+
+    @And("User clicks <Select> button")
+    public void userClicksSelectButton() {
+        task_pages.startTaskOnSelectButtonElement.click();
+
+    }
+
+    @And("User click {string} and writes the time {string}")
+    public void userClickAndWritesTheTime(String timeOption, String timeAmount) {
+
+        WebElement element = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + timeOption + "')]"));
+        Methods.highlightElement(element);
+        element.click();
+        task_pages.startTaskOnDurationElement.sendKeys(timeAmount);
+
+    }
+
+    //Scenario 10
+    @And("User clicks on <More>")
+    public void userClicksOnMore() {
+        task_pages.moreButtonElement.click();
+
+    }
+
+    @And("User clicks Time tracking and defines time {string} as hour and {string} minute")
+    public void userClicksTimeTrackingAndDefinesTimeAsHourAndMinute(String hour, String minute) {
+
+        task_pages.timeTrackClickBoxElement.click();
+        task_pages.taskPlanHourBoxElement.sendKeys(hour);
+        task_pages.taskPlanMinuteBoxElement.sendKeys(minute);
+
+    }
+
+    @And("User add reminder and activate repeate task")
+    public void userAddReminderAndActivateRepeateTask() {
+        task_pages.addReminderElement.click();
+        task_pages.addDateReminderElement.click();
+        task_pages.selectButtonElement.click();
+        task_pages.addButtonElement.click();
+        task_pages.activateBoxElement.click();
+
     }
 }

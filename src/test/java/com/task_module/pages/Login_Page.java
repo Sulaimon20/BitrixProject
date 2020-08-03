@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Login_Page extends BasePage{
 
 
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 2);
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
 
     // LOGIN WebElements
 
