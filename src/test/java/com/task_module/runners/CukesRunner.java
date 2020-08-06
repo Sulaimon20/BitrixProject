@@ -7,7 +7,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = "html:target/Bitrix24.html",
+        plugin = {
+                "pretty",
+                "json:target/cucumber.json",
+                "rerun:target/rerun.txt",
+                "html:target/Bitrix24.html"
+        },
         features = "src/test/resources/features",
         glue = "com/task_module/step_definitions",
         dryRun = false,

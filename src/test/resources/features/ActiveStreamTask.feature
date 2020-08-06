@@ -3,6 +3,7 @@ Feature: As a user, I should be able to assign tasks by clicking on Task tab und
 
   Background: User log in and is on the <Active Stream> home page
 
+
   Scenario: 1. "High Priority" task functionality
     Given user login and is on the <Active Stream> home page
     When User clicks on <Task> button

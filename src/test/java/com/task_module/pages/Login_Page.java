@@ -16,6 +16,9 @@ public class Login_Page extends BasePage{
 
     // LOGIN WebElements
 
+    @FindBy(xpath = "(//a[.='Login'])[2]")
+    public WebElement loginHomePageElement;
+
     @FindBy(xpath = "//input[@name='USER_LOGIN']")
     public WebElement userNameBox;
 
@@ -27,11 +30,33 @@ public class Login_Page extends BasePage{
 
     //
 
+
     public void login() {
 
         wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty("username1"));
-        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password2"));
+        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
         loginButton.click();
+    }
+
+    public void setUser(String user, String username, String password) {
+
+//        if (user == "HR3"){
+//            wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(username);
+//            wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(password);
+//            loginButton.click();
+//
+//        }
+//
+//        if (user == "marketing3"){
+//            wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty("username3"));
+//            wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
+//            loginButton.click();
+//        }
+//        if (user == "helpdesk3"){
+//            wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty("username2"));
+//            wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
+//            loginButton.click();
+//        }
 
     }
 

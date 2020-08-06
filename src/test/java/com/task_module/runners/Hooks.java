@@ -1,9 +1,8 @@
 package com.task_module.runners;
 
 import com.task_module.utilities.Driver;
-import io.cucumber.java.*;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import io.cucumber.java.After;
+
 
 public class Hooks {
 

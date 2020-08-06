@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class task_step_definition {
+public class TaskModule_step_definition {
 
     Login_Page loginPage = new Login_Page();
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
