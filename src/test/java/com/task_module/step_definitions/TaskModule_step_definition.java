@@ -41,13 +41,13 @@ public class TaskModule_step_definition {
     }
 
     //Scenario 1
-    @When("User clicks on <Task> button")
+    @When("User clicks on Task button")
     public void user_clicks_on_task_button() {
         wait.until(ExpectedConditions.visibilityOf(task_pages.taskButtonElement)).click();
 
     }
 
-    @Then("User clicks <High Priority> dropdown box")
+    @Then("User clicks High Priority dropdown box")
     public void user_clicks_high_priority_dropdown_box() {
         wait.until(ExpectedConditions.visibilityOf(task_pages.priorityBoxElement)).click();
 
@@ -89,7 +89,7 @@ public class TaskModule_step_definition {
     String formatDateTime = now.format(format);
     String textMessage;
 
-    @Then("User writes in <Thing to do> box text {string}")
+    @Then("User writes in Thing to do box text {string}")
     public void userWritesInThingToDoBoxText(String text) {
 
         textMessage = text + " " + formatDateTime;
@@ -137,13 +137,13 @@ public class TaskModule_step_definition {
 
     }
 
-    @Then("User clicks <Send> button")
+    @Then("User clicks Send button")
     public void user_clicks_send_button() throws InterruptedException {
 
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.sendButtonElement)).click();
     }
 
-    @Then("User clicks on <Task> button on menu bar")
+    @Then("User clicks on Task button on menu bar")
     public void user_clicks_on_task_button_on_menu_bar() {
         Driver.getDriver().navigate().refresh();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.menuTaskButtonElement)).click();

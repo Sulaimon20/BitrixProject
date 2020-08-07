@@ -1,29 +1,34 @@
-package com.task_module.runners;
+package com.task_module.step_definitions;
 
 import com.task_module.utilities.Driver;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 
 public class Hooks {
 
- /*   @Before
-    public void setUpScenario(){
-        System.out.println("-----> Before annotation: Setting up browser");
-    }*/
+   @Before
+    public void setUpScenario() {
+       System.out.println("-----> Before annotation: Setting up browser");
+
+   }
 
 
     @After
-    public void tearDownScenario(){
+    public void tearDownScenario(Scenario scenario){
 
         //#1 we need to take a screen shot using Selenium
         // #2 we are going to attach it into our report using attach method
         //attach method accept 3 arguments:
         //1)screenshot; 2) image type; 3) current scenario's name
 
-        /*if (scenario.isFailed()) {
+        if (scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
-        }*/
+        }
 
         Driver.closeDriver();
     }
