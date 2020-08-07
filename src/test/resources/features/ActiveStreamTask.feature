@@ -1,3 +1,4 @@
+
 @test
 Feature: Task tab under Active Stream fuctionality
 
@@ -89,7 +90,6 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the the "Assign the tasks to employees testing" in <My Tasks> table
-
   Scenario Outline: 9.  Deadline and Time Planning functionality
     When User in is Hope page
     And User clicks on Task button

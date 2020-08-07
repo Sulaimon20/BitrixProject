@@ -1,14 +1,29 @@
+@logintest
 Feature: Automating login functionality
 
   Background:
-    Given I am on the Login page
+    Given User is on the Login page
 
-  Scenario: 1. As an authorized user I should be able to login
-    And I login with username "username" and password "password"
-    Then the Account Summary page should be displayed
 
-  Scenario: 2. As an unauthorized user I should NOT be able to login
-    When I login with username "wrong" and password "wrong"
-    Then Error message Login and/or password are wrong. should be displayed.
+  Scenario Outline: 1. As an authorized user I should be able to login
+    When "<User>" login with username and password
+    Then User should be on the Active Stream "<home page>"
+    Examples:
+      | User      | home page  |
+      | HR        | Portal     |
+      | Helpdesk  | Portal     |
+      | Marketing | (1) Portal |
+
+  Scenario Outline: 2. As an unauthorized user I should NOT be able to login
+    When I login with username "<wrongUsername>" and password "<wrongPassword>"
+    Then "Incorrect login or password" should be displayed.
     And I login with username "" and password ""
-    Then Error message Login and/or password are wrong. should be displayed.
+    Then "Incorrect login or password" should be displayed.
+    Examples:
+      | wrongUsername           | wrongPassword |
+      | user@cybertekschool.com | userUser      |
+      | 23492349234&*&*&        | %^&%^&%^&%^&  |
+      | @-23pjsdjojsdf          | 0000000       |
+      | -99999999               | 99999999      |
+      | 0000000000              | 00000000000   |
+
