@@ -1,14 +1,13 @@
 package com.task_module.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -19,76 +18,67 @@ import java.net.URL;
 
 public class Driver {
 
-    //1-Make constructor private
+    //logger we need to print more organize
+    private static final Logger logger = Logger.getLogger(Driver.class);
+
+    private static final ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+
+
+    //so no one can create object of Driver class
+    //everyone should call static getter method instead
     private Driver() {
+
     }
 
-    private static WebDriver driver;
+    /**
+     * synchronized makes method thread safe. It ensures that only 1 thread can use it at the time.
+     * <p>
+     * Thread safety reduces performance but it makes everything safe.
+     *
+     * @return
+     */
+    public synchronized static WebDriver getDriver() {
+        //if webdriver object doesn't exist
+        //create it
+        if (driverPool.get() == null) {
+            //specify browser type in configuration.properties file
+            String browser = ConfigurationReader.getProperty("browser").toLowerCase();
+            // -Dbrowser=firefox
+            if (System.getProperty("browser") != null) {
+                browser = System.getProperty("browser");
+            }
 
-    public static WebDriver getDriver() {
-
-        if (driver == null) {
-            String browser = ConfigurationReader.getProperty("browser");
-
+            logger.info("Browser :: " + browser);
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--start-maximized");
+                    driverPool.set(new ChromeDriver(chromeOptions));
+                    break;
+                case "chromeheadless":
+                    //to run chrome without interface (headless mode)
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions options = new ChromeOptions();
+                    options.setHeadless(true);
+                    driverPool.set(new ChromeDriver(options));
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    driverPool.set(new FirefoxDriver());
                     break;
-                case "chrome-headless":
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
-                    break;
-                case "firefox-headless":
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
-                    break;
-                case "chrome-remote":
-                    try {
-//                        same thing as ChromeOptions
-//                        To request Selenium Grid to run tests on Chrome
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
-                        desiredCapabilities.setPlatform(Platform.LINUX);
-//                        ChromeOptions chromeOptions = new ChromeOptions();
-                        URL url = new URL("http://3.235.145.39:4444/wd/hub");
-                        driver = new RemoteWebDriver(url, desiredCapabilities);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "firefox-remote":
-                    try {
-                        //to request grid to run tests on firefox
-                        FirefoxOptions firefoxOptions = new FirefoxOptions();
-                        URL url = new URL("http://3.235.145.39:4444/wd/hub");
-                        driver = new RemoteWebDriver(url, firefoxOptions);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-
                 default:
-                    throw new RuntimeException("Wrong browser name: "+browser);
+                    logger.error("Wrong browser name :: " + browser);
+                    throw new RuntimeException("Wrong browser name :: " + browser);
             }
         }
-
-        return driver;
-
+        return driverPool.get();
     }
 
     public static void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driverPool.get() != null) {
+            driverPool.get().quit();
+            driverPool.remove();
         }
     }
 }
-/*
-for (String s : driver.getWindowHandles()){
-                driver.switchTo().window(s).quit();
-            }
- */

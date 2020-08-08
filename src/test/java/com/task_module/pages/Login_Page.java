@@ -2,6 +2,7 @@ package com.task_module.pages;
 
 import com.task_module.utilities.ConfigurationReader;
 import com.task_module.utilities.Driver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,25 +11,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Login_Page extends BasePage{
 
-
+    private final static Logger logger = Logger.getLogger(Login_Page.class);
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 3);
 
     // LOGIN WebElements
 
     @FindBy(xpath = "(//a[.='Login'])[2]")
-    public WebElement loginHomePageElement;
+    private WebElement loginHomePageElement;
 
     @FindBy(xpath = "//input[@name='USER_LOGIN']")
-    public WebElement userNameBox;
+    private WebElement userNameBox;
 
     @FindBy(xpath = "//input[@name='USER_PASSWORD']")
-    public WebElement passwordBox;
+    private WebElement passwordBox;
 
     @FindBy(xpath = "//input[@class='login-btn']")
-    public WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id='login-popup']/div[2]/text()")
-    public WebElement errorMessage;
+    private WebElement errorMessage;
 
 
 
@@ -36,10 +37,13 @@ public class Login_Page extends BasePage{
 
 
     public void login() {
+        String usernameString = ConfigurationReader.getProperty("username");
+        String passwordString = ConfigurationReader.getProperty("password");
 
         wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty("HR"));
         wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
         loginButton.click();
+        logger.info("Login with " + usernameString + " username and " + passwordString + " password");
     }
 
     public void login(String User) {

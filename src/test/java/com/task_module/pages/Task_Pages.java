@@ -65,21 +65,11 @@ public class Task_Pages {
     @FindBy(xpath = "(//span[@title='Quote text'])[2]")
     public WebElement quoteIconElement;
 
-    @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
-    public WebElement messageBoxElement;
 
 //Scenario 5
 
     @FindBy(xpath = "//*[@id='bx-b-mention-task-form-lifefeed_task_form']")
     public WebElement addMentionIcon;
-
-    @FindBy(xpath = "//a[.='Employees and departments']")
-    public WebElement employAndDep;
-
-
-    @FindBy(xpath = "//table[@class='bx-finder-box-tabs-content-table']")
-    public WebElement addMentionEmail;
-
 
     @FindBy(xpath = "(//span[@class='bxhtmled-top-bar-btn bxhtmled-button-link'])[2]")
     public WebElement linkIconElement;
@@ -113,8 +103,8 @@ public class Task_Pages {
     @FindBy(xpath = "(//span[@class='bx-finder-groupbox-content']//a)[1]")
     public WebElement addMoreEmailElement;
 
-    @FindBy(xpath = "//div[@class='bx-finder-box-item-t7-name']")
-    public WebElement closeAddMoreAlertElement;
+//    @FindBy(xpath = "//div[@class='bx-finder-box-item-t7-name']")
+//    public WebElement closeAddMoreAlertElement;
 
     //Scenario 9
 
@@ -140,13 +130,11 @@ public class Task_Pages {
     public WebElement pm_am_element;
 
     @FindBy(xpath = "(//span[@class='bx-calendar-button-text'])[1]")
-    //(//span[@class="bx-calendar-button-text"])[1]
     public WebElement selectButtonElement;
 
     //time planning
     @FindBy(xpath = "//span[contains(text(),'Time planning')]")
     public WebElement timePlanningButtonElement;
-
 
     @FindBy(xpath = "(//input[@data-bx-id='datepicker-display'])[2]")
     public WebElement startTaskOnBoxElement;

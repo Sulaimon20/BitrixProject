@@ -1,9 +1,10 @@
 
-@tasktest
+@smoke
 Feature: Task tab under Active Stream fuctionality
 
   Background: User log in and is on the <Active Stream> home page
     Given user login and is on the <Active Stream> home page
+
   @scenario1
   Scenario: 1. "High Priority" task functionality
 
