@@ -1,10 +1,10 @@
 
-@test
+@tasktest
 Feature: Task tab under Active Stream fuctionality
 
   Background: User log in and is on the <Active Stream> home page
     Given user login and is on the <Active Stream> home page
-
+  @scenario1
   Scenario: 1. "High Priority" task functionality
 
     When User clicks on Task button
@@ -14,7 +14,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the "High priority task testing" in <My Tasks> table
-
+  @scenario2
   Scenario: 2. Visual Editor functionality
     When User in is Hope page
     * User clicks on Task button
@@ -24,7 +24,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the "Visual Editor testing" in <My Tasks> table
-
+  @scenario3
   Scenario: 3. Uploading file functionality
     When User in is Hope page
     When User clicks on Task button
@@ -36,7 +36,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the "Uploading file testing" in <My Tasks> table
-
+  @scenario4
   Scenario: 4. Quoting text functionality
     When User in is Hope page
     When User clicks on Task button
@@ -46,7 +46,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the the "Quote text" in <My Tasks> table
-
+  @scenario5
   Scenario: 5. Add mention functionality
     When User in is Hope page
     When User clicks on Task button
@@ -56,7 +56,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the the "Add mention" in <My Tasks> table
-
+  @scenario6
   Scenario Outline: 6. Attach link functionality
     When User in is Hope page
     When User clicks on Task button
@@ -70,7 +70,7 @@ Feature: Task tab under Active Stream fuctionality
     Examples:
       | Text link                             | URL link                                    |
       | NASA Live: Official Stream of NASA TV | https://www.youtube.com/watch?v=21X5lGlDOfg |
-
+  @scenario7
   Scenario: 7. Checklist functionality
     When User in is Hope page
     When User clicks on Task button
@@ -80,7 +80,7 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the the "Checklist testing" in <My Tasks> table
-
+@scenario8
   Scenario: 8. Assign the tasks to employees (Add more) functionality
     When User in is Hope page
     * User clicks on Task button
@@ -90,6 +90,9 @@ Feature: Task tab under Active Stream fuctionality
     * User clicks Send button
     * User clicks on Task button on menu bar
     Then User see the the "Assign the tasks to employees testing" in <My Tasks> table
+
+  @scenario9
+
   Scenario Outline: 9.  Deadline and Time Planning functionality
     When User in is Hope page
     And User clicks on Task button
@@ -107,7 +110,7 @@ Feature: Task tab under Active Stream fuctionality
     Examples:
       | year | month  | date | hour | minute | pm_am | options | duration |
       | 2022 | August | 20   | 3    | 15     | pm    | minutes | 30       |
-
+  @scenario10
   Scenario: 10. More to specify the task details functionality
     When User in is Hope page
     * User clicks on Task button

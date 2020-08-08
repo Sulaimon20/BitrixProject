@@ -4,7 +4,7 @@ Feature: Automating login functionality
   Background:
     Given User is on the Login page
 
-
+  @loginscenario1
   Scenario Outline: 1. As an authorized user I should be able to login
     When "<User>" login with username and password
     Then User should be on the Active Stream "<home page>"
@@ -13,7 +13,7 @@ Feature: Automating login functionality
       | HR        | Portal     |
       | Helpdesk  | Portal     |
       | Marketing | (1) Portal |
-
+  @loginscenario1
   Scenario Outline: 2. As an unauthorized user I should NOT be able to login
     When I login with username "<wrongUsername>" and password "<wrongPassword>"
     Then "Incorrect login or password" should be displayed.

@@ -3,9 +3,10 @@ package com.task_module.step_definitions;
 import com.github.javafaker.Faker;
 import com.task_module.pages.Login_Page;
 import com.task_module.pages.Task_Pages;
+import com.task_module.utilities.BrowserUtils;
 import com.task_module.utilities.ConfigurationReader;
 import com.task_module.utilities.Driver;
-import com.task_module.utilities.Methods;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -283,7 +284,7 @@ public class TaskModule_step_definition {
     @And("User clicks on <Deadline> dropbox")
     public void userClicksOnDeadlineDropbox() {
 
-        Methods.highlightElement(task_pages.deadLineBoxElement);
+        BrowserUtils.highlightElement(task_pages.deadLineBoxElement);
         task_pages.deadLineBoxElement.click();
 
     }
@@ -293,37 +294,37 @@ public class TaskModule_step_definition {
 
 
         //  Month value
-        Methods.highlightElement(task_pages.monthBoxElement);
+        BrowserUtils.highlightElement(task_pages.monthBoxElement);
         task_pages.monthBoxElement.click();
         WebElement monthElement = Driver.getDriver().findElement(By.xpath("//span[contains(@class,'bx-calendar-month')][contains(text(),'" + month + "')]"));
-        Methods.highlightElement(monthElement);
+        BrowserUtils.highlightElement(monthElement);
         wait.until(ExpectedConditions.elementToBeClickable(monthElement)).click();
 
         //  Year value
-        Methods.highlightElement(task_pages.yearBoxElement);
+        BrowserUtils.highlightElement(task_pages.yearBoxElement);
         task_pages.yearBoxElement.click();
 
         WebElement yearElement = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + year + "')]"));
-        Methods.highlightElement(yearElement);
+        BrowserUtils.highlightElement(yearElement);
         wait.until(ExpectedConditions.elementToBeClickable(yearElement)).click();
 
         //Day value
         WebElement dayElement = Driver.getDriver().findElement(By.xpath("//a[@class='bx-calendar-cell bx-calendar-weekend'][contains(text(),'" + day + "')]"));
 
-        Methods.highlightElement(dayElement);
+        BrowserUtils.highlightElement(dayElement);
         wait.until(ExpectedConditions.elementToBeClickable(dayElement)).click();
 
         //  hour value
-        Methods.highlightElement(task_pages.hourElement);
+        BrowserUtils.highlightElement(task_pages.hourElement);
         task_pages.hourElement.clear();
         task_pages.hourElement.sendKeys(hour);
 
         //  minute value
-        Methods.highlightElement(task_pages.minutelement);
+        BrowserUtils.highlightElement(task_pages.minutelement);
         task_pages.minutelement.clear();
         task_pages.minutelement.sendKeys(minute);
 
-        Methods.highlightElement(task_pages.pm_am_element);
+        BrowserUtils.highlightElement(task_pages.pm_am_element);
 
         if (pm_am.equalsIgnoreCase("am")) {
             task_pages.pm_am_element.click();
@@ -334,7 +335,7 @@ public class TaskModule_step_definition {
     @And("User clicks on Select button")
     public void userClicksOnSelectButton() {
         //Select button
-        Methods.highlightElement(task_pages.selectButtonElement);
+        BrowserUtils.highlightElement(task_pages.selectButtonElement);
         task_pages.selectButtonElement.click();
     }
 
@@ -357,7 +358,7 @@ public class TaskModule_step_definition {
     public void userClickAndWritesTheTime(String timeOption, String timeAmount) {
 
         WebElement element = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'" + timeOption + "')]"));
-        Methods.highlightElement(element);
+        BrowserUtils.highlightElement(element);
         element.click();
         task_pages.startTaskOnDurationElement.sendKeys(timeAmount);
 
