@@ -40,23 +40,26 @@ public class Login_Page extends BasePage{
         String usernameString = ConfigurationReader.getProperty("username");
         String passwordString = ConfigurationReader.getProperty("password");
 
-        wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty("HR"));
-        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
+        wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(usernameString);
+        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(passwordString);
         loginButton.click();
         logger.info("Login with " + usernameString + " username and " + passwordString + " password");
     }
 
     public void login(String User) {
-
+        String passwordString = ConfigurationReader.getProperty("password");
         wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(ConfigurationReader.getProperty(User));
-        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(ConfigurationReader.getProperty("password"));
+        wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(passwordString);
         loginButton.click();
+        logger.info("Login with " + User + " username and " + passwordString + " password");
+
     }
 
     public void login(String username, String password) {
 
         wait.until(ExpectedConditions.visibilityOf(userNameBox)).sendKeys(username);
         wait.until(ExpectedConditions.visibilityOf(passwordBox)).sendKeys(password);
+        logger.info("Login with " + username + " username and " + password + " password");
         loginButton.click();
     }
 

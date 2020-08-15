@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasePage {
 
     private final static Logger logger = Logger.getLogger(BasePage.class);
-    protected WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+    protected WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
 
 
 

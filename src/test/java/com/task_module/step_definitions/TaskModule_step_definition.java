@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class TaskModule_step_definition {
 
@@ -96,6 +97,7 @@ public class TaskModule_step_definition {
         textMessage = text + " " + formatDateTime;
 
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).click();
+
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).sendKeys(textMessage);
 
     }
@@ -116,7 +118,7 @@ public class TaskModule_step_definition {
         wait.until(ExpectedConditions.visibilityOf(task_pages.uploadfilesIconElement)).click();
         Thread.sleep(1000);
         //add text file
-        WebElement addTxtFile = Driver.getDriver().findElement(By.xpath("(.//input[@type='file'])[5]"));
+        WebElement addTxtFile = Driver.getDriver().findElement(By.cssSelector("[title='Upload files']"));
         Thread.sleep(1000);
         addTxtFile.sendKeys("C:/Users/Acer/Desktop/test.txt");
         Thread.sleep(1000);
