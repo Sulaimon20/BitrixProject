@@ -5,11 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Task_Pages {
+public class Task_Pages extends BasePage{
 
-    public Task_Pages() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
 
     @FindBy(xpath = "//span[@class='logo-text']")
     public WebElement homePageLogoElement;

@@ -49,6 +49,7 @@ public class Driver {
             }
 
             logger.info("Browser :: " + browser);
+
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();

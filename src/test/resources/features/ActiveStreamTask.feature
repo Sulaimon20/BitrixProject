@@ -1,6 +1,6 @@
 
 @smoke
-Feature: Task tab under Active Stream fuctionality
+Feature: Task tab under Active Stream functionality
 
   Background: User log in and is on the <Active Stream> home page
     Given user login and is on the <Active Stream> home page

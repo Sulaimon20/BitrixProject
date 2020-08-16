@@ -11,9 +11,7 @@ public abstract class BasePage {
     protected WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
 
 
-
     public BasePage(){
-
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
