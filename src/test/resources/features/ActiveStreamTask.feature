@@ -30,7 +30,7 @@ Feature: Task tab under Active Stream functionality
     When User in is Hope page
     When User clicks on Task button
     Then User writes in Thing to do box text "Uploading file testing"
-    * User clicks on <Upload files> icon and upload <TeamTestCases> file  and <LoginVyTrack> picture from local disks
+   * User clicks on <Upload files> icon and upload <test> file  and <test2> picture from local disks
    # BUG * User clicks on "Download from external drive" hypertexts
     Then User clicks the <Select document> button and upload a file from <Bitrix>
    # BUG * User select a file and clicks "Create using MS Office online" button
