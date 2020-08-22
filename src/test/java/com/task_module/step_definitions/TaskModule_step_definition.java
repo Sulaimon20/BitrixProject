@@ -95,9 +95,7 @@ public class TaskModule_step_definition {
     public void userWritesInThingToDoBoxText(String text) {
 
         textMessage = text + " " + formatDateTime;
-
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).click();
-
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).sendKeys(textMessage);
 
     }
@@ -106,34 +104,37 @@ public class TaskModule_step_definition {
     public void user_writes_in_thing_to_do_box_text_upload_file_and_text_the_file_was_uploaded_in_message_body_box(String arg) {
 
         wait.until(ExpectedConditions.visibilityOf(task_pages.uploadfilesIconElement)).click();
-
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).click();
         wait.until(ExpectedConditions.visibilityOf(task_pages.thingToDoBoxElement)).sendKeys(arg);
 
     }
 
-    @Then("User clicks on <Upload files> icon and upload <TeamTestCases> file  and <LoginVyTrack> picture from local disks")
+    @Then("User clicks on <Upload files> icon and upload <test> file  and <test2> picture from local disks")
     public void user_clicks_on_upload_files_icon_and_upload_team_test_cases_file_and_login_vy_track_picture_from_local_disks() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOf(task_pages.uploadfilesIconElement)).click();
         Thread.sleep(1000);
         //add text file
-        WebElement addTxtFile = Driver.getDriver().findElement(By.cssSelector("[title='Upload files']"));
+        String testPath = System.getProperty("user.dir") + "/src/test/resources/testData/test.txt";
+        String test2Path = System.getProperty("user.dir") + "/src/test/resources/testData/test2.bmp";
+
+        WebElement addTxtFile = Driver.getDriver().findElement(By.xpath("(//input[@class='diskuf-fileUploader wd-test-file-light-inp '])[5]"));
         Thread.sleep(1000);
-        addTxtFile.sendKeys("C:/Users/Acer/Desktop/test.txt");
+        addTxtFile.sendKeys(testPath);
+        //C:\Users\Acer\IdeaProjects\BitrixProject\src\test\resources\testData\test2.bmp
         Thread.sleep(1000);
         //adding image file
         WebElement addImageFile = Driver.getDriver().findElement(By.xpath("(.//input[@type='file'])[5]"));
         Thread.sleep(1000);
-        addImageFile.sendKeys("C:/Users/Acer/Desktop/test2.bmp");
+        addImageFile.sendKeys(test2Path);
         Thread.sleep(2000);
 
     }
 
     @Then("User clicks the <Select document> button and upload a file from <Bitrix>")
     public void userClicksTheSelectDocumentButtonAndUploadAFileFromBitrix() {
-        wait.until(ExpectedConditions.elementToBeClickable(task_pages.selectFromBitrixElement)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(task_pages.salesMarketingButtonElement)).click();
+        task_pages.selectFromBitrixElement.click();
+        wait.until(ExpectedConditions.visibilityOf(task_pages.salesMarketingButtonElement)).click();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.marketingAdvertisingElement)).click();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.logoGifElement)).click();
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.selectDocumentButtonElement)).click();

@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
                 "html:target/Bitrix24.html"
         },
         features = "src/test/resources/features",
-        glue = "com/task_module/step_definitions"
-       // dryRun = false
-      //  tags = "  @scenario3"
+        glue = "com/task_module/step_definitions",
+
+      tags = "  @scenario1"
         // @test
 )
 
