@@ -424,3 +424,6 @@
 2020-08-21 20:39:17 INFO  Driver:51 - Browser :: chrome
 2020-08-21 20:39:29 INFO  Login_Page:46 - Login with hr3@cybertekschool.com username and UserUser password
 2020-08-21 20:39:41 INFO  Hooks:32 - Scenario: io.cucumber.java.Scenario@859ea42
+2020-08-22 08:44:14 INFO  Driver:51 - Browser :: chrome
+2020-08-22 08:44:26 INFO  Login_Page:46 - Login with hr3@cybertekschool.com username and UserUser password
+2020-08-22 08:44:41 INFO  Hooks:32 - Scenario: io.cucumber.java.Scenario@35f639fa
