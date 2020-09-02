@@ -54,12 +54,9 @@ public class BrowserUtils {
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).perform();
     }
-
     /**
      * return a list of string from a list of web elements
-     *
-     * @param list
-     * @return
+     * @param list  @return
      */
     public static List<String> getElementsText(List<WebElement> list) {
         List<String> elemTexts = new ArrayList<>();
@@ -129,12 +126,9 @@ public class BrowserUtils {
         return element;
     }
 
-    /**
-     * Verifies whether the element matching the provided locator is displayed on page
+    /**    Verifies whether the element matching the provided locator is displayed on page
      * fails if the element matching the provided locator is not found or not displayed
-     *
-     * @param by
-     */
+     * * @param by   */
     public static void verifyElementDisplayed(By by) {
         try {
             assertTrue("Element not visible: " + by, Driver.getDriver().findElement(by).isDisplayed());
@@ -158,7 +152,6 @@ public class BrowserUtils {
 
         }
     }
-
 
     /**
      * Waits for element to be not stale
@@ -214,7 +207,6 @@ public class BrowserUtils {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
 
-
     /**
      * Scrolls down to an element using JavaScript
      *
@@ -259,5 +251,7 @@ public class BrowserUtils {
             }
         }
     }
+
+    
 
 }
