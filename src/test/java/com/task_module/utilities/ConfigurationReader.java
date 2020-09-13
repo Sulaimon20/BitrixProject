@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ConfigurationReader {
 
     //1- we created properties object
+
     private static Properties properties = new Properties();
 
     static {
@@ -24,7 +25,8 @@ public class ConfigurationReader {
             System.out.println("Properties file not found.");
         }
     }
-    //Our own custom method to read and get values from configuration.properties file
+    //Our own custom method to read and get values from configuration.properties file4
+
     public static String getProperty(String keyword) {
      return properties.getProperty(keyword);
 
