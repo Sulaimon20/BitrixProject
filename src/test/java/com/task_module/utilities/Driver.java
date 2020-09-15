@@ -15,6 +15,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Driver {
 
@@ -37,6 +39,7 @@ public class Driver {
      *
      * @return
      */
+
     public synchronized static WebDriver getDriver() {
         //if webdriver object doesn't exist
         //create it
@@ -57,6 +60,21 @@ public class Driver {
                     chromeOptions.addArguments("--start-maximized");
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
+
+                case "chromePathChanger":
+                    WebDriverManager.chromedriver().setup();
+                   // ChromeOptions chromeOptions = new ChromeOptions();
+                    //chromeOptions.addArguments("--start-maximized");
+                    //driverPool.set(new ChromeDriver(chromeOptions));
+
+                    ChromeOptions options = new ChromeOptions();
+                    Map<String, Object> prefs = new HashMap<String, Object>();
+                    prefs.put("download.default_directory", "/directory/path");
+                    options.setExperimentalOption("prefs", prefs);
+
+                    break;
+
+
                 case "remote-chrome":
                     try {
                         URL url = new URL("http://100.25.20.235:4444/wd/hub");
@@ -69,7 +87,7 @@ public class Driver {
                 case "chromeheadless":
                     //to run chrome without interface (headless mode)
                     WebDriverManager.chromedriver().setup();
-                    ChromeOptions options = new ChromeOptions();
+                    options = new ChromeOptions();
                     options.setHeadless(true);
                     driverPool.set(new ChromeDriver(options));
                     break;
@@ -86,6 +104,7 @@ public class Driver {
     }
 
     public static void closeDriver() {
+
         if (driverPool.get() != null) {
             driverPool.get().quit();
             driverPool.remove();

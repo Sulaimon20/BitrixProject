@@ -11,14 +11,12 @@ import org.openqa.selenium.TakesScreenshot;
 
 
 public class Hooks  {
+
     private final static Logger logger = Logger.getLogger(Hooks.class);
 
    @Before
     public void setUpScenario() {
        System.out.println("-----> Before annotation: Setting up browser");
-
-
-
    }
 
 
@@ -29,9 +27,11 @@ public class Hooks  {
         // #2 we are going to attach it into our report using attach method
         //attach method accept 3 arguments:
         //1)screenshot; 2) image type; 3) current scenario's name
+        
         logger.info("Scenario: " + scenario);
 
         if (scenario.isFailed()) {
+
             byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", scenario.getName());
         }

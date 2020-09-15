@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/task_module/step_definitions",
 
-      tags = "  @scenario1"
+      tags = "@scenario2"
         // @test
 )
 

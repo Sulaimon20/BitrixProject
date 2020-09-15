@@ -142,7 +142,7 @@ public class TaskModule_step_definition {
     }
 
     @Then("User clicks Send button")
-    public void user_clicks_send_button() throws InterruptedException {
+    public void ыuser_clicks_send_button() throws InterruptedException {
 
         wait.until(ExpectedConditions.elementToBeClickable(task_pages.sendButtonElement)).click();
     }

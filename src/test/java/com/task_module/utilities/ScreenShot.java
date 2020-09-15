@@ -14,6 +14,7 @@ public class ScreenShot {
      * This method takes a screenshot and saves it with a date&time stamp.
      * @return path to screenshot
      */
+
     public static String takeAScreenshotAndSave() {
         String path = System.getProperty("user.dir") + "/src/test/resources/screenshots/";
         path = path.replace("/", File.separator);
